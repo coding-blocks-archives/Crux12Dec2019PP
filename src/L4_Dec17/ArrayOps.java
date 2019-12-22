@@ -36,14 +36,16 @@ public class ArrayOps {
 		// arr = inverse(arr);
 		// display(arr);
 
-		int[] arr = { 50, 30, 10, 60, 5 };
+		int[] arr = { 11, 44, 5, 9, 8 };
 		// subarray(arr);
 
 		// subarraySum2Loops(arr);
 
 		// coinToss(3);
 		// bubbleSort(arr);
-		selectionSort(arr);
+		// selectionSort(arr);
+		insertionSort(arr);
+
 		display(arr);
 	}
 
@@ -317,6 +319,25 @@ public class ArrayOps {
 			int temp = arr[min];
 			arr[min] = arr[count];
 			arr[count] = temp;
+		}
+
+	}
+
+	public static void insertionSort(int[] arr) {
+
+		for (int count = 1; count <= arr.length - 1; count++) {
+
+			int temp = arr[count];
+
+			int j = count - 1;
+
+			while (j >= 0 && arr[j] > temp) {
+				arr[j + 1] = arr[j];
+				j--;
+			}
+
+			arr[j + 1] = temp;
+
 		}
 
 	}
