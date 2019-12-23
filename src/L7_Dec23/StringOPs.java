@@ -17,7 +17,7 @@ public class StringOPs {
 
 	public static void printChars(String str) {
 
-		for (int i = 0; i < str.length(); i++) {
+		for (int i = 0; i < str.length();i++) {
 			System.out.println(str.charAt(i));
 		}
 
