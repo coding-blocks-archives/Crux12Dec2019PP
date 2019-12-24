@@ -1,4 +1,4 @@
-package Lec7;
+package L7_Dec23;
 
 import java.util.Scanner;
 
