@@ -15,7 +15,10 @@ public class RecursionGet {
 
 //		System.out.println(prmt("abc"));
 
-		System.out.println(mazePath(0, 0, 2, 2));
+//		System.out.println(mazePath(0, 0, 2, 2));
+//		System.out.println(mazePathMM(0, 0, 2, 2));
+		
+		System.out.println(boardPath(0, 10).size());
 
 	}
 
@@ -182,31 +185,121 @@ public class RecursionGet {
 			br.add("");
 			return br;
 		}
-
 		if (cr > er || cc > ec) {
 
 			ArrayList<String> br = new ArrayList<String>();
 			return br;
 		}
-
 		ArrayList<String> rr1 = mazePath(cr + 1, cc, er, ec);
-
 		ArrayList<String> mr = new ArrayList<String>();
 
 		for (String val : rr1) {
 
 			mr.add("V" + val);
 		}
-
 		ArrayList<String> rr2 = mazePath(cr, cc + 1, er, ec);
 
 		for (String val : rr2) {
 
 			mr.add("H" + val);
 		}
+		return mr;
+
+	}
+
+	public static ArrayList<String> mazePathMM(int cr, int cc, int er, int ec) {
+
+		if (cr == er && cc == ec) {
+
+			ArrayList<String> br = new ArrayList<String>();
+			br.add("");
+			return br;
+		}
+		if (cr > er || cc > ec) {
+
+			ArrayList<String> br = new ArrayList<String>();
+			return br;
+		}
+
+		ArrayList<String> mr = new ArrayList<String>();
+
+		for (int m = 1; m <= er; m++) {
+			ArrayList<String> rr1 = mazePathMM(cr + m, cc, er, ec);
+
+			for (String val : rr1) {
+
+				mr.add("V" + m + val);
+			}
+		}
+
+		for (int m = 1; m <= ec; m++) {
+			ArrayList<String> rr2 = mazePathMM(cr, cc + m, er, ec);
+
+			for (String val : rr2) {
+
+				mr.add("H" + m + val);
+			}
+		}
+
+		for (int m = 1; m <= er && m <= ec; m++) {
+			ArrayList<String> rr3 = mazePathMM(cr + m, cc + m, er, ec);
+
+			for (String val : rr3) {
+
+				mr.add("D" + m + val);
+			}
+		}
 
 		return mr;
 
 	}
 
+	public static ArrayList<String> boardPath(int curr, int end) {
+
+		if (curr == end) {
+
+			ArrayList<String> br = new ArrayList<String>();
+			br.add("");
+			return br;
+		}
+
+		if (curr > end) {
+
+			ArrayList<String> br = new ArrayList<String>();
+			return br;
+		}
+
+		ArrayList<String> mr = new ArrayList<String>();
+
+		for (int dice = 1; dice <= 6 && curr + dice <= end; dice++) {
+
+			ArrayList<String> rr = boardPath(curr + dice, end);
+
+			for (String val : rr) {
+
+				mr.add(dice + val);
+			}
+
+		}
+		
+		return mr;
+
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
