@@ -15,7 +15,11 @@ public class RecursionPrint {
 		System.out.println("---------");
 //		prmt2("abc", "");
 
-		System.out.println(coinToss(3, ""));
+//		System.out.println(coinToss(3, ""));
+
+//		System.out.println(BoardPath(0, 10, ""));
+		
+		LexiCounting(0, 1000);
 	}
 
 	public static void Subseq(String ques, String ans) {
@@ -140,7 +144,26 @@ public class RecursionPrint {
 
 	}
 
-	public static void BoardPath(int curr, int end, String ans) {
+	public static int BoardPath(int curr, int end, String ans) {
+
+		if (curr == end) {
+			System.out.println(ans);
+
+			return 1;
+		}
+
+		if (curr > end) {
+			return 0;
+		}
+
+		int cnt = 0;
+
+		for (int dice = 1; dice <= 6; dice++) {
+
+			cnt += BoardPath(curr + dice, end, ans + dice);
+		}
+
+		return cnt;
 
 	}
 
@@ -157,6 +180,29 @@ public class RecursionPrint {
 		cnt += coinToss(n - 1, ans + "T");
 
 		return cnt;
+
+	}
+
+	public static void LexiCounting(int curr, int end) {
+
+		if (curr > end) {
+			return;
+		}
+
+		System.out.println(curr);
+
+		int i = 0;
+
+		if (curr == 0) {
+			i = 1;
+		}
+
+		while (i <= 9) {
+
+			LexiCounting(curr * 10 + i, end);
+			
+			i++;
+		}
 
 	}
 
