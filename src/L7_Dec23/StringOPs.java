@@ -23,6 +23,7 @@ public class StringOPs {
 
 	}
 
+	//O (n)
 	public static boolean palindrome(String str) {
 
 		int i = 0;
@@ -56,15 +57,32 @@ public class StringOPs {
 
 	public static void printPalSubstrings(String str) {
 
+		//O(n2)
+		
 		for (int i = 0; i < str.length(); i++) {
 			for (int j = i + 1; j <= str.length(); j++) {
 
+				//O(n)
 				String res = str.substring(i, j);
 
+				//O(n)
 				if (palindrome(res))
 					System.out.println(res);
 			}
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
