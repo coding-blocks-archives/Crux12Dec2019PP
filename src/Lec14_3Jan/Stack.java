@@ -2,8 +2,8 @@ package Lec14_3Jan;
 
 public class Stack {
 
-	int[] data;
-	int tos;
+	protected int[] data;
+	protected int tos;
 
 	public Stack() {
 
@@ -16,12 +16,10 @@ public class Stack {
 		tos = -1;
 	}
 
-	public void push(int item) {
+	public void push(int item) throws Exception {
 
 		if (tos == data.length - 1) {
-			System.out.println("Overflow");
-
-			return;
+			throw new Exception("Stack is Full");
 		}
 
 		this.tos++;
@@ -29,11 +27,10 @@ public class Stack {
 
 	}
 
-	public int pop() {
+	public int pop() throws Exception {
 
 		if (tos == -1) {
-			System.out.println("Underflow");
-			return -1;
+			throw new Exception("Stack is Empty");
 		}
 
 		int rv = data[tos];
@@ -43,11 +40,10 @@ public class Stack {
 		return rv;
 	}
 
-	public int peek() {
+	public int peek() throws Exception {
 
 		if (tos == -1) {
-			System.out.println("Underflow");
-			return -1;
+			throw new Exception("Stack is Empty");
 		}
 
 		return data[tos];
@@ -69,4 +65,16 @@ public class Stack {
 
 	}
 
+	public boolean isFull() {
+		
+		return size() == data.length;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
