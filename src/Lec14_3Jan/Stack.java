@@ -66,15 +66,13 @@ public class Stack {
 	}
 
 	public boolean isFull() {
-		
+
 		return size() == data.length;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public boolean isEmpty() {
+
+		return size() == 0;
+	}
+
 }
