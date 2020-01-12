@@ -18,11 +18,10 @@ public class Queue {
 		size = 0;
 	}
 
-	public void Enqueue(int item) {
+	public void Enqueue(int item) throws Exception {
 
 		if (isFull()) {
-			System.out.println("OverFlow");
-			return;
+			throw new Exception("Queue is Full!!!");
 		}
 
 		int rear = (front + size) % data.length;
@@ -32,12 +31,12 @@ public class Queue {
 
 	}
 
-	public int dequeue() {
+	public int dequeue() throws Exception {
 
 		if (isEmpty()) {
 
-			System.out.println("UnderFlow");
-			return -1;
+			throw new Exception("Queue is Empty!!!");
+
 		}
 
 		int rv = data[front];
