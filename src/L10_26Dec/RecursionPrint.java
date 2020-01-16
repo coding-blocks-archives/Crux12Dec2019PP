@@ -13,13 +13,13 @@ public class RecursionPrint {
 //		prmt("abc", "");
 
 		System.out.println("---------");
-//		prmt2("abc", "");
+		prmt2("aba", "");
 
 //		System.out.println(coinToss(3, ""));
 
 //		System.out.println(BoardPath(0, 10, ""));
-		
-		LexiCounting(0, 1000);
+
+//		LexiCounting(0, 1000);
 	}
 
 	public static void Subseq(String ques, String ans) {
@@ -200,7 +200,7 @@ public class RecursionPrint {
 		while (i <= 9) {
 
 			LexiCounting(curr * 10 + i, end);
-			
+
 			i++;
 		}
 
