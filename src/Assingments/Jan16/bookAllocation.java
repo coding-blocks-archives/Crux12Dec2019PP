@@ -6,69 +6,70 @@ import java.util.Scanner;
 public class bookAllocation {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		Scanner scn = new Scanner(System.in);
 
-		int nob = scn.nextInt();
-		int nos = scn.nextInt();
+		int t = scn.nextInt();
 
-		int[] books = new int[nob];
+		while (t-- > 0) {
+			int nob = scn.nextInt();
+			int nos = scn.nextInt();
 
-		for (int i = 0; i < nob; i++) {
-			books[i] = scn.nextInt();
-		}
+			int[] pages = new int[nob];
 
-		int lo = books[0];
+			for (int i = 0; i < nob; i++) {
+				pages[i] = scn.nextInt();
+			}
 
-		int hi = 0;
+			int sum = 0;
+			for (int i = 0; i < nob; i++) {
+				sum += pages[i];
+			}
 
-		for (int pages : books) {
-			hi += pages;
-		}
+			int finalAns = 0;
 
-		hi = hi - lo;
+			int lo = 0;
+			int hi = sum;
 
-		int ans = 0;
+			while (lo <= hi) {
 
-		while (lo <= hi) {
+				int mid = (lo + hi) / 2;
 
-			int mid = lo + (hi - lo) / 2;
-
-			if (isPossible(books, mid, nos)) {
-
-				ans = mid;
-				hi = mid - 1;
-			} else {
-
-				lo = mid + 1;
+				if (isPossible(nos, nob, pages, mid)) {
+					hi = mid - 1;
+					finalAns = mid;
+				} else {
+					lo = mid + 1;
+				}
 
 			}
 
+			System.out.println(finalAns);
 		}
-
-		System.out.println(ans);
 
 	}
 
-	public static boolean isPossible(int[] books, int maxCap, int nos) {
+	public static boolean isPossible(int nos, int nob, int[] pages, int mid) {
 
-		int students = 1;
+		int numStudents = 1;
 		int pagesRead = 0;
 
-		int curr_book = 0;
-		while (curr_book < books.length) {
+		int i = 0;
 
-			if (pagesRead + books[curr_book] <= maxCap) {
-				pagesRead += books[curr_book];
-				curr_book++;
+		while (i < pages.length) {
+
+			if (pagesRead + pages[i] <= mid) {
+				pagesRead += pages[i];
+				i++;
 			} else {
-				students++;
-				pagesRead = 0;
-			}
 
-			if (students > nos) {
-				return false;
+				numStudents++;
+				pagesRead = 0;
+
+				if (numStudents > nos) {
+					return false;
+				}
+
 			}
 
 		}

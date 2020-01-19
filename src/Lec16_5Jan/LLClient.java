@@ -42,6 +42,11 @@ public class LLClient {
 		ll.Kreverse(3);
 
 		ll.display();
+		
+		
+		int[][][][][][][][][][] arr = new int[1][2][2][2][3][2][2][2][2][2];
+		
+		
 
 	}
 
