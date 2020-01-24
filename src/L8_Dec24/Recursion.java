@@ -30,15 +30,11 @@ public class Recursion {
 	}
 
 	public static int fact(int n) {
-
 		if (n == 1) {
 			return 1;
 		}
-
 		int fn = fact(n - 1);
-
 		return fn * n;
-
 	}
 
 	public static void PD(int n) {
