@@ -181,7 +181,7 @@ public class BinaryTree {
 
 	public int diameter2() {
 		dia2(root);
-		
+
 		return dia;
 	}
 
