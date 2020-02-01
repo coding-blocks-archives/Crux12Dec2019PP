@@ -1,6 +1,7 @@
 package Lec20_25Jan;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 public class BinaryTree {
 
@@ -17,6 +18,38 @@ public class BinaryTree {
 
 		scn = new Scanner(str);
 		root = construct(null, true);
+	}
+
+	public BinaryTree(int[] pre, int[] in) {
+
+		root = construct(pre, 0, pre.length - 1, in, 0, in.length - 1);
+	}
+
+	public Node construct(int[] pre, int plo, int phi, int[] in, int ilo, int ihi) {
+
+		if (plo > phi) {
+			return null;
+		}
+
+		Node nn = new Node();
+		nn.data = pre[plo];
+
+		int idx = -1;
+		for (int i = ilo; i <= ihi; i++) {
+
+			if (pre[plo] == in[i]) {
+				idx = i;
+				break;
+			}
+		}
+
+		int nel = idx - ilo;
+
+		nn.left = construct(pre, plo + 1, plo + nel, in, ilo, idx - 1);
+		nn.right = construct(pre, plo + nel + 1, phi, in, idx + 1, ihi);
+
+		return nn;
+
 	}
 
 	public Node construct(Node parent, boolean isLeftChild) {
@@ -237,6 +270,160 @@ public class BinaryTree {
 
 		return sdp;
 
+	}
+
+	public boolean isBalanced() {
+		return isBalanced(root);
+	}
+
+	public boolean isBalanced(Node node) {
+
+		if (node == null) {
+			return true;
+		}
+
+		boolean left = isBalanced(node.left);
+		boolean right = isBalanced(node.right);
+
+		int bf = ht(node.left) - ht(node.right);
+		return left && right && Math.abs(bf) <= 1;
+
+	}
+
+	class balpair {
+
+		int ht = -1;
+		boolean isbal = true;
+	}
+
+	public boolean isBalanced2() {
+		return isBalanced2(root).isbal;
+	}
+
+	public balpair isBalanced2(Node node) {
+
+		if (node == null) {
+			return new balpair();
+		}
+
+		balpair lp = isBalanced2(node.left);
+		balpair rp = isBalanced2(node.right);
+
+		balpair sp = new balpair();
+
+		int lh = lp.ht;
+		int rh = rp.ht;
+
+		sp.ht = Math.max(lh, rh) + 1;
+		int bf = Math.abs(lh - rh);
+
+		sp.isbal = bf <= 1 && lp.isbal && rp.isbal;
+
+		return sp;
+
+	}
+
+	public void preorder() {
+
+		preorder(root);
+		System.out.println();
+	}
+
+	public void postorder() {
+
+		postorder(root);
+		System.out.println();
+	}
+
+	public void inorder() {
+
+		inorder(root);
+		System.out.println();
+	}
+
+	private void preorder(Node node) {
+
+		if (node == null)
+			return;
+
+		System.out.print(node.data + " ");
+
+		preorder(node.left);
+		preorder(node.right);
+
+	}
+
+	private void postorder(Node node) {
+
+		if (node == null)
+			return;
+
+		postorder(node.left);
+		postorder(node.right);
+
+		System.out.print(node.data + " ");
+
+	}
+
+	private void inorder(Node node) {
+
+		if (node == null)
+			return;
+
+		inorder(node.left);
+		System.out.print(node.data + " ");
+		inorder(node.right);
+
+	}
+
+	class pair {
+
+		Node node;
+		boolean isSelf;
+		boolean isLeft;
+		boolean isRight;
+
+		public pair(Node node) {
+			this.node = node;
+		}
+	}
+
+	public void preorderItr() {
+
+		Stack<pair> stack = new Stack<>();
+
+		stack.push(new pair(root));
+
+		while (!stack.isEmpty()) {
+
+			pair peekpair = stack.peek();
+
+			if (!peekpair.isSelf) {
+
+				System.out.print(peekpair.node.data + " ");
+				peekpair.isSelf = true;
+			} else if (!peekpair.isLeft) {
+
+				if (peekpair.node.left != null) {
+					pair lp = new pair(peekpair.node.left);
+					stack.push(lp);
+				}
+				peekpair.isLeft = true;
+
+			} else if (!peekpair.isRight) {
+
+				if (peekpair.node.right != null) {
+					pair rp = new pair(peekpair.node.right);
+					stack.push(rp);
+				}
+				peekpair.isRight = true;
+			} else {
+				stack.pop();
+			}
+
+		}
+
+		System.out.println();
 	}
 
 }
