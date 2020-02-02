@@ -4,6 +4,8 @@ import java.util.LinkedList;
 
 public class BTClient {
 
+	int a = 0;
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -17,7 +19,7 @@ public class BTClient {
 
 		int[] pre = { 10, 20, 40, 50, 30, 70 };
 		int[] in = { 40, 20, 50, 10, 30, 70 };
-
+		
 		BinaryTree bt = new BinaryTree(pre, in);
 
 		bt.display();
