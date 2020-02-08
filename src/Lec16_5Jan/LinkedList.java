@@ -510,4 +510,28 @@ public class LinkedList {
 
 	}
 
+	public void delete() {
+
+		this.RPI();
+
+		Node max = head;
+		Node curr = head.next;
+
+		while (curr != null) {
+
+			if (curr.data > max.data) {
+
+				max = curr;
+			} else {
+				max.next = curr.next;
+			}
+
+			curr = curr.next;
+
+		}
+
+		this.tail = max;
+		this.RPI();
+	}
+
 }

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class BTClient {
 
 	int a = 0;
-	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -19,25 +19,31 @@ public class BTClient {
 
 		int[] pre = { 10, 20, 40, 50, 30, 70 };
 		int[] in = { 40, 20, 50, 10, 30, 70 };
-		
+
 		BinaryTree bt = new BinaryTree(pre, in);
+
+		bt.from_Level_Order_To_Tree();
 
 		bt.display();
 		System.out.println(bt.size());
-		System.out.println(bt.max());
-		System.out.println(bt.find(100));
-		System.out.println(bt.ht());
-		System.out.println(bt.diameter());
-		System.out.println(bt.diameter2());
-		System.out.println(bt.diameter3());
-
-		System.out.println(bt.isBalanced());
-		System.out.println(bt.isBalanced2());
+//		System.out.println(bt.max());
+//		System.out.println(bt.find(100));
+//		System.out.println(bt.ht());
+//		System.out.println(bt.diameter());
+//		System.out.println(bt.diameter2());
+//		System.out.println(bt.diameter3());
+//
+//		System.out.println(bt.isBalanced());
+//		System.out.println(bt.isBalanced2());
 
 		bt.preorder();
 //		bt.postorder();
 //		bt.inorder();
-		bt.preorderItr();
+//		bt.preorderItr();
+//		
+//		bt.Level();
+//		
+//		System.out.println(bt.LCA(40, 20));
 
 	}
 

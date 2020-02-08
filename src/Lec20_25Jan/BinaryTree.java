@@ -1,5 +1,8 @@
 package Lec20_25Jan;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -12,7 +15,7 @@ public class BinaryTree {
 	}
 
 	private Node root;
-	Scanner scn;
+	Scanner scn = new Scanner(System.in);
 
 	public BinaryTree(String str) {
 
@@ -82,6 +85,42 @@ public class BinaryTree {
 		}
 
 		return nn;
+	}
+
+	public void from_Level_Order_To_Tree() {
+
+		int val = scn.nextInt();
+		root = new Node();
+		root.data = val;
+
+		Queue<Node> queue = new LinkedList<>();
+		queue.add(root);
+
+		while (!queue.isEmpty()) {
+
+			Node rn = queue.remove();
+
+			int lc = scn.nextInt();
+
+			if (lc != -1) {
+				Node leftNode = new Node();
+				leftNode.data = lc;
+				rn.left = leftNode;
+				queue.add(leftNode);
+
+			}
+
+			int rc = scn.nextInt();
+
+			if (rc != -1) {
+				Node rightNode = new Node();
+				rightNode.data = rc;
+				rn.right = rightNode;
+				queue.add(rightNode);
+			}
+
+		}
+
 	}
 
 	public void display() {
@@ -424,6 +463,69 @@ public class BinaryTree {
 		}
 
 		System.out.println();
+	}
+
+	public void Level() {
+
+		LinkedList<Node> queue = new LinkedList<>();
+		LinkedList<Node> helper = new LinkedList<>();
+
+		ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+
+		ArrayList<Integer> each_level = new ArrayList<>();
+
+		queue.addLast(root);
+
+		while (!queue.isEmpty()) {
+
+			Node rn = queue.removeFirst();
+
+			if (rn == null) {
+				continue;
+			}
+			each_level.add(rn.data);
+
+			helper.addLast(rn.left);
+			helper.addLast(rn.right);
+
+			if (queue.isEmpty()) {
+
+				res.add(each_level);
+				each_level = new ArrayList<>();
+				queue = helper;
+				helper = new LinkedList<>();
+			}
+
+		}
+
+		System.out.println(res);
+
+	}
+
+	public int LCA(int n1, int n2) {
+
+		return LCA(root, n1, n2).data;
+	}
+
+	public Node LCA(Node root, int n1, int n2) {
+
+		if (root == null) {
+			return null;
+		}
+
+		if (root.data == n1 || root.data == n2) {
+			return root;
+		}
+
+		Node left_LCA = LCA(root.left, n1, n2);
+		Node right_LCA = LCA(root.right, n1, n2);
+
+		if (left_LCA != null && right_LCA != null) {
+			return root;
+		}
+
+		return left_LCA == null ? right_LCA : left_LCA;
+
 	}
 
 }

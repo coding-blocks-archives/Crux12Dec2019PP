@@ -7,16 +7,18 @@ public class LLClient {
 
 		LinkedList ll = new LinkedList();
 
-		ll.addLast(1);
+		ll.addLast(12);
+		ll.addLast(15);
+		ll.addLast(10);
+		ll.addLast(11);
+		ll.addLast(5);
+		ll.addLast(6);
 		ll.addLast(2);
 		ll.addLast(3);
-		ll.addLast(4);
-		ll.addLast(5);
-//		ll.addLast(6);
 
-		System.out.println(ll.getFirst());
-		System.out.println(ll.getLast());
-		System.out.println(ll.getAt(2));
+//		System.out.println(ll.getFirst());
+//		System.out.println(ll.getLast());
+//		System.out.println(ll.getAt(2));
 
 //		ll.display();
 //
@@ -33,20 +35,19 @@ public class LLClient {
 //
 //		ll.fold();
 //
+//		ll.display();
+//
+//		System.out.println(ll.mid());
+//
+//		ll.createDummyList();
+//
+//		ll.Kreverse(3);
+//
+//		ll.display();
+
 		ll.display();
-
-		System.out.println(ll.mid());
-
-		ll.createDummyList();
-
-		ll.Kreverse(3);
-
+		ll.delete();
 		ll.display();
-		
-		
-		int[][][][][][][][][][] arr = new int[1][2][2][2][3][2][2][2][2][2];
-		
-		
 
 	}
 
