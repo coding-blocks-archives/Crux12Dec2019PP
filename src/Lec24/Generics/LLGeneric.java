@@ -1,4 +1,4 @@
-package Lec24;
+package Lec24.Generics;
 
 public class LLGeneric<T> {
 

@@ -1,4 +1,4 @@
-package Lec24;
+package Lec24.Interface;
 
 public class Developer3 implements Interface_A, Interface_B {
 

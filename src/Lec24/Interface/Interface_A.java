@@ -1,4 +1,4 @@
-package Lec24;
+package Lec24.Interface;
 
 public interface Interface_A {
 

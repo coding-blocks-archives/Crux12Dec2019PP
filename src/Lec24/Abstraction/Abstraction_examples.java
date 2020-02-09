@@ -1,10 +1,9 @@
-package Lec24;
+package Lec24.Abstraction;
 
-public class Abstraction_examples {
+abstract public class Abstraction_examples {
 
-	
 	abstract public void sum();
-	
+
 	public int subtract() {
 		return 4 - 6;
 	}
