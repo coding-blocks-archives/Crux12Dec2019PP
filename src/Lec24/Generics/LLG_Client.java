@@ -12,7 +12,7 @@ public class LLG_Client {
 		ll.addLast(new Car(10, "Yellow", 123));
 		ll.addLast(new Car(230, "Yellow", 123));
 
-		ll.display();
+//		ll.display();
 	}
 
 }

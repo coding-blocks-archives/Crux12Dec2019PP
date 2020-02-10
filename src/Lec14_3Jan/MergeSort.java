@@ -5,13 +5,16 @@ public class MergeSort {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		int[] arr = { 5, 4, 1, 3, 2 };
+		int[] arr = { 2, 4, 1, 3, 5 };
 
 		int[] ans = mergesort(arr, 0, arr.length - 1);
 
 		for (int val : ans) {
 			System.out.print(val + " ");
 		}
+
+		System.out.println();
+		System.out.println(count);
 
 	}
 

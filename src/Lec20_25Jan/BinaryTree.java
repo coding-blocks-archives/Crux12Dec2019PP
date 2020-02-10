@@ -1,10 +1,15 @@
 package Lec20_25Jan;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
+
+import Lec20_25Jan.BinaryTree.VOPair;
 
 public class BinaryTree {
 
@@ -15,7 +20,7 @@ public class BinaryTree {
 	}
 
 	private Node root;
-	Scanner scn = new Scanner(System.in);
+	Scanner scn;
 
 	public BinaryTree(String str) {
 
@@ -525,6 +530,78 @@ public class BinaryTree {
 		}
 
 		return left_LCA == null ? right_LCA : left_LCA;
+
+	}
+
+	class VOPair {
+
+		int data;
+		int hlevel;
+
+		public VOPair(int d, int h) {
+			data = d;
+			hlevel = h;
+		}
+
+		@Override
+		public String toString() {
+			return data + "";
+		}
+
+//		@Override
+//		public int compareTo(VOPair o) {
+//			return this.hlevel - o.hlevel;
+//		}
+	}
+
+	HashMap<Integer, ArrayList<VOPair>> map = new HashMap<>();
+
+	class VOComparator implements Comparator<VOPair> {
+
+		@Override
+		public int compare(VOPair o1, VOPair o2) {
+
+			return o1.hlevel - o2.hlevel;
+		}
+
+	}
+
+	public void Vorder() {
+
+		fillMap(root, 0, 0);
+		System.out.println(map);
+
+		ArrayList<Integer> keys = new ArrayList<Integer>(map.keySet());
+
+		Collections.sort(keys);
+		System.out.println(keys);
+
+		for (int key : keys) {
+
+			ArrayList<VOPair> level = map.get(key);
+			Collections.sort(level, new VOComparator());
+
+			System.out.println(key + " " + level);
+
+		}
+
+	}
+
+	public void fillMap(Node node, int Vlevel, int Hlevel) {
+
+		if (node == null) {
+			return;
+		}
+		if (!map.containsKey(Vlevel)) {
+			map.put(Vlevel, new ArrayList<>());
+		}
+
+		ArrayList<VOPair> list = map.get(Vlevel);
+		list.add(new VOPair(node.data, Hlevel));
+		map.put(Vlevel, list);
+
+		fillMap(node.left, Vlevel - 1, Hlevel + 1);
+		fillMap(node.right, Vlevel + 1, Hlevel + 1);
 
 	}
 

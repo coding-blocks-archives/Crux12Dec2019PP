@@ -17,15 +17,15 @@ public class BTClient {
 		String inp2 = "10 true 20 true 40 true 70 false false false false true 30 false true 60 false false";
 		String inp3 = "10 true 20 true 40 true 70 false false false true 50 false false true 30 false true 60 false false";
 
-		int[] pre = { 10, 20, 40, 50, 30, 70 };
-		int[] in = { 40, 20, 50, 10, 30, 70 };
+		int[] pre = { 10, 20, 40, 80, 90, 70, 80, 50, 30, 60, 100 };
+		int[] in = { 80, 90, 40, 70, 80, 20, 50, 10, 60, 30, 100 };
 
 		BinaryTree bt = new BinaryTree(pre, in);
 
-		bt.from_Level_Order_To_Tree();
+//		bt.from_Level_Order_To_Tree();
 
 		bt.display();
-		System.out.println(bt.size());
+//		System.out.println(bt.size());
 //		System.out.println(bt.max());
 //		System.out.println(bt.find(100));
 //		System.out.println(bt.ht());
@@ -36,7 +36,7 @@ public class BTClient {
 //		System.out.println(bt.isBalanced());
 //		System.out.println(bt.isBalanced2());
 
-		bt.preorder();
+//		bt.preorder();
 //		bt.postorder();
 //		bt.inorder();
 //		bt.preorderItr();
@@ -44,6 +44,8 @@ public class BTClient {
 //		bt.Level();
 //		
 //		System.out.println(bt.LCA(40, 20));
+
+		bt.Vorder();
 
 	}
 
