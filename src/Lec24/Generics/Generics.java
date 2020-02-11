@@ -40,7 +40,7 @@ public class Generics {
 
 			for (int j = 0; j <= arr.length - count - 2; j++) {
 
-				if (arr[j].compareTo(arr[j + 1]) > 0) {
+				if (arr[j].compareTo(arr[j + 1]) < 0) {
 
 					T temp = arr[j];
 					arr[j] = arr[j + 1];

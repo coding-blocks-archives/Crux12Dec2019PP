@@ -1,6 +1,6 @@
 package Lec24.Generics;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
 	int speed;
 	String color;
@@ -19,11 +19,21 @@ public class Car {
 		return "{S:" + speed + " P:" + price + " C:" + color + "}";
 	}
 
-//	@Override
-//	public int compareTo(Car o) {
+	@Override
+	public int compareTo(Car o) {
 
 //		return this.speed - o.speed;
-//		return o.price - this.price;
-//	}
+		return o.price - this.price;
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
