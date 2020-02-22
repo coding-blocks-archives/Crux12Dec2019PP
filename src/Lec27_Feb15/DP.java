@@ -6,51 +6,65 @@ public class DP {
 
 	public static void main(String[] args) {
 
-		int n = 100;
-//		System.out.println(fibo(n));
+		/*
+		 * Fibonacci int n = 100; System.out.println(fibo(n));
+		 * 
+		 * long start = System.currentTimeMillis(); int[] strg = new int[n + 1];
+		 * System.out.println(fiboBU(n)); System.out.println(fibo(n));
+		 * System.out.println(fiboBUSE(n)); System.out.println(fiboTD(n, strg)); long
+		 * end = System.currentTimeMillis();
+		 * 
+		 * System.out.println(end - start); System.out.println(fiboBU(n));
+		 */
 
-		long start = System.currentTimeMillis();
-//		int[] strg = new int[n + 1];
-//		System.out.println(fiboBU(n));
-//		System.out.println(fibo(n));
-//		System.out.println(fiboBUSE(n));
-//		System.out.println(fiboTD(n, strg));
-		long end = System.currentTimeMillis();
+		/*
+		 * Boardpath System.out.println(BoardPath(0, n));
+		 * System.out.println(BoardPathTD(0, n, strg));
+		 * System.out.println(boardPathBU(n)); System.out.println(boardPathBUSE(n));
+		 */
 
-//		System.out.println(end - start);
-//		System.out.println(fiboBU(n));
+		/*
+		 * Mazepath int er = 4, ec = 3; int[][] strg = new int[er + 1][ec + 1];
+		 * System.out.println(MazePath(0, 0, er, ec)); System.out.println(MazePathTD(0,
+		 * 0, er, ec, strg)); System.out.println(MazePathBU(er, ec));
+		 * System.out.println(MazePathBUSE(er, ec));
+		 */
 
-		// Boardpath
-//		System.out.println(BoardPath(0, n));
-//		System.out.println(BoardPathTD(0, n, strg));
-//		System.out.println(boardPathBU(n));
-//		System.out.println(boardPathBUSE(n));
+		/*
+		 * LCS String s1 = "sunday", s2 = "saturday"; int[][] strg = new int[s1.length()
+		 * + 1][s2.length() + 1];
+		 * 
+		 * for (int[] st : strg) { Arrays.fill(st, -1); } System.out.println(LCS(s1,
+		 * s2)); System.out.println(LCSTD(s1, s2, strg)); System.out.println(LCSBU(s1,
+		 * s2));
+		 */
 
-		// Mazepath
-//		int er = 4, ec = 3;
-//		int[][] strg = new int[er + 1][ec + 1];
-//		System.out.println(MazePath(0, 0, er, ec));
-//		System.out.println(MazePathTD(0, 0, er, ec, strg));
-//		System.out.println(MazePathBU(er, ec));
-//		System.out.println(MazePathBUSE(er, ec));
+		/*
+		 * Edit distance String s1 = "vsvsvs", s2 = "";
+		 * System.out.println(EditDistance(s1, s2)); int[][] strg = new int[s1.length()
+		 * + 1][s2.length() + 1]; System.out.println(EditDistanceTD(s1, s2, strg));
+		 * System.out.println(EditDistanceBU(s1, s2));
+		 */
 
-		// LCS
-//		String s1 = "sunday", s2 = "saturday";
-//		int[][] strg = new int[s1.length() + 1][s2.length() + 1];
-//
-//		for (int[] st : strg) {
-//			Arrays.fill(st, -1);
-//		}
-//		System.out.println(LCS(s1, s2));
-//		System.out.println(LCSTD(s1, s2, strg));
-//		System.out.println(LCSBU(s1, s2));
+		/*
+		 * N-Wines int[] wines = { 2, 3, 5, 1, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+		 * 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
+		 * }; System.out.println(NWines(wines, 0, wines.length - 1, 1)); int[][] strg =
+		 * new int[wines.length][wines.length]; System.out.println(NWines2TD(wines, 0,
+		 * wines.length - 1, strg));
+		 */
 
-		// Edit distance
-		String s1 = "vsvsvs", s2 = "sdsv";
-		System.out.println(EditDistance(s1, s2));
-		int[][] strg = new int[s1.length() + 1][s2.length() + 1];
-		System.out.println(EditDistanceTD(s1, s2, strg));
-		System.out.println(EditDistanceBU(s1, s2));
+		/*
+		 * MCM int[] arr = { 2, 3, 4, 1, 5 }; // 28 System.out.println(MCM(arr, 0,
+		 * arr.length - 1)); int[][] strg = new int[arr.length][arr.length];
+		 * System.out.println(MCMTD(arr, 0, arr.length - 1, strg));
+		 * System.out.println(MCMBU(arr));
+		 */
+
+		/*
+		 * Knapsack int[] w = { 10, 20, 30 }; int[] p = { 60, 100, 120 };
+		 * System.out.println(knapsack(p, w, 0, 50));
+		 */
 	}
 
 	public static int fibo(int n) {
@@ -490,4 +504,205 @@ public class DP {
 
 	}
 
+	public static int NWines(int[] wines, int si, int ei, int yr) {
+
+		if (si == ei) {
+			return wines[si] * yr;
+		}
+
+		int fh = NWines(wines, si + 1, ei, yr + 1) + wines[si] * yr;
+		int sh = NWines(wines, si, ei - 1, yr + 1) + wines[ei] * yr;
+
+		return Math.max(fh, sh);
+
+	}
+
+	public static int NWines2(int[] wines, int si, int ei) {
+
+		int yr = wines.length - ei + si;
+
+		if (si == ei) {
+			return wines[si] * yr;
+		}
+
+		int fh = NWines2(wines, si + 1, ei) + wines[si] * yr;
+		int sh = NWines2(wines, si, ei - 1) + wines[ei] * yr;
+
+		return Math.max(fh, sh);
+
+	}
+
+	public static int NWines2TD(int[] wines, int si, int ei, int[][] strg) {
+
+		int yr = wines.length - ei + si;
+
+		if (si == ei) {
+			return wines[si] * yr;
+		}
+
+		if (strg[si][ei] != 0) {
+			return strg[si][ei];
+		}
+
+		int fh = NWines2TD(wines, si + 1, ei, strg) + wines[si] * yr;
+		int sh = NWines2TD(wines, si, ei - 1, strg) + wines[ei] * yr;
+
+		return strg[si][ei] = Math.max(fh, sh);
+
+	}
+
+	public static int NWinesBU(int[] wines) {
+
+		int[][] strg = new int[wines.length][wines.length];
+
+		for (int slide = 0; slide <= wines.length - 1; slide++) {
+
+			for (int si = 0; si <= wines.length - slide - 1; si++) {
+
+				int ei = si + slide;
+
+				int yr = wines.length - ei + si;
+				if (si == ei) {
+					strg[si][ei] = wines[si] * yr;
+					continue;
+				}
+
+				int fh = strg[si + 1][ei] + wines[si] * yr;
+				int sh = strg[si][ei - 1] + wines[ei] * yr;
+
+				strg[si][ei] = Math.max(fh, sh);
+
+			}
+		}
+
+		return strg[0][wines.length - 1];
+	}
+
+	public static int MCM(int[] arr, int si, int ei) {
+
+		if (ei - si == 1) {
+			return 0;
+		}
+
+		int min = Integer.MAX_VALUE;
+
+		for (int k = si + 1; k <= ei - 1; k++) {
+
+			int fh = MCM(arr, si, k);
+			int sh = MCM(arr, k, ei);
+
+			int sw = arr[si] * arr[k] * arr[ei];
+
+			int total = fh + sh + sw;
+
+			min = Math.min(min, total);
+		}
+
+		return min;
+	}
+
+	public static int MCMTD(int[] arr, int si, int ei, int[][] strg) {
+
+		if (ei - si == 1) {
+			return 0;
+		}
+
+		if (strg[si][ei] != 0) {
+			return strg[si][ei];
+		}
+
+		int min = Integer.MAX_VALUE;
+
+		for (int k = si + 1; k <= ei - 1; k++) {
+
+			int fh = MCMTD(arr, si, k, strg);
+			int sh = MCMTD(arr, k, ei, strg);
+
+			int sw = arr[si] * arr[k] * arr[ei];
+
+			int total = fh + sh + sw;
+
+			min = Math.min(min, total);
+		}
+
+		return strg[si][ei] = min;
+	}
+
+	public static int MCMBU(int[] arr) {
+
+		int[][] strg = new int[arr.length][arr.length];
+
+		for (int slide = 1; slide <= arr.length - 1; slide++) {
+			for (int si = 0; si <= arr.length - slide - 1; si++) {
+
+				int ei = si + slide;
+
+				if (ei - si == 1) {
+					strg[si][ei] = 0; // you can skip
+					continue;
+				}
+
+				int min = Integer.MAX_VALUE;
+
+				for (int k = si + 1; k <= ei - 1; k++) {
+
+					int fh = strg[si][k];
+					int sh = strg[k][ei];
+
+					int sw = arr[si] * arr[k] * arr[ei];
+
+					int total = fh + sh + sw;
+					min = Math.min(total, min);
+
+				}
+
+				strg[si][ei] = min;
+
+			}
+		}
+
+		for (int[] st : strg) {
+			for (int s : st) {
+				System.out.print(s + " ");
+			}
+
+			System.out.println();
+		}
+
+		return strg[0][arr.length - 1];
+	}
+
+	public static int knapsack(int[] p, int[] wt, int vidx, int cap) {
+
+		if (vidx == p.length) {
+			return 0;
+		}
+
+		int inc = 0;
+
+		if (cap - wt[vidx] >= 0)
+			inc = knapsack(p, wt, vidx + 1, cap - wt[vidx]) + p[vidx];
+		int exc = knapsack(p, wt, vidx + 1, cap);
+
+		return Math.max(inc, exc);
+	}
+
+	public static int knapsackTD(int[] p, int[] wt, int vidx, int cap, int[][] strg) {
+
+		if (vidx == p.length) {
+			return 0;
+		}
+
+		if (strg[vidx][cap] != 0) {
+			return strg[vidx][cap];
+		}
+
+		int inc = 0;
+
+		if (cap - wt[vidx] >= 0)
+			inc = knapsackTD(p, wt, vidx + 1, cap - wt[vidx], strg) + p[vidx];
+		int exc = knapsackTD(p, wt, vidx + 1, cap, strg);
+
+		return strg[vidx][cap] = Math.max(inc, exc);
+	}
 }
